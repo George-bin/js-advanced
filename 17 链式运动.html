@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>链式运动框架</title>
+	<style>
+        #div1 {
+        	width: 200px;
+        	height: 200px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+    <div id="div1"></div>
+
+
+
+
+    <script src="js/JS.js"></script>
+	<script>
+        /*
+        链式运动框架
+        回调函数：
+            1、运动停止时，执行函数
+            2、运动停止时，开始下一次运动
+        */
+        window.onload = function() {
+            var oDiv = document.getElementById('div1');
+
+	        oDiv.onmouseover = function() {
+	        	starMove2(oDiv, 'width', 400, function() {
+	        		starMove2(oDiv, 'height', 400, function() {
+	        			starMove2(oDiv, 'opacity', 37);
+	        		});
+	        	});
+	        }
+
+	        oDiv.onmouseout = function() {
+	        	starMove2(oDiv, 'opacity', 100, function() {
+	        		starMove2(oDiv, 'height', 100, function() {
+	        			starMove2(oDiv, 'width', 100);
+	        		});
+	        	});
+	        }
+        }
+        
+	</script>
+</body>
+</html>

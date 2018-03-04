@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        #div1 {
+        	position: absolute;
+        	left: 0;
+        	top: 50px;
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+	<input type="button" id="btn" value="开始" />
+	<div id="div1"></div>
+
+	<script>
+        var oBtn = document.getElementById('btn'),
+            oDiv = document.getElementById('div1');
+
+        oBtn.onclick = function() {
+        	clearInterval(oDiv.timer);   //清理定时器 -> 使用定时器必备
+        	oDiv.timer = setInterval(function() {
+        		var iSpeed = 7;
+        		if(oDiv.offsetLeft >= 300) {   //是否到大终点
+        			clearInterval(oDiv.timer); //到达终点
+        		}else {   //到达终点之前
+        			oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+        		}
+        		
+        	},50);
+        }
+	</script>
+</body>
+</html>

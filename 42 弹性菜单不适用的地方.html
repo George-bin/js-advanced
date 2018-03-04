@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        #div1 {
+        	width: 100px;
+        	height: 30px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+   <textarea name="" id="txt1" cols="40" rows="10"></textarea>
+	<div id="div1"></div>
+
+	<script>
+	    window.onload = function() {
+	    	var oDiv = document.getElementById('div1');
+	    	oDiv.onmouseover = function() {
+	    		starMove(oDiv, 200);
+	    	};
+	    	oDiv.onmouseout = function() {
+	    		starMove(oDiv, 30);
+	    	};
+	    }
+	    
+	    var height = 30;
+	    var iSpeed = 0;
+        function starMove(obj, iTarget) {
+        	clearInterval(obj.timer);
+
+        	obj.timer = setInterval(function() {
+        		iSpeed += (iTarget-height)/5;
+
+        		iSpeed *= 0.7;
+        		if(Math.abs(iSpeed) < 1 && Math.abs(iTarget-height) < 1) {
+        			clearInterval(obj.timer);
+        			obj.style.height = iTarget+'px';
+        		}else {
+        			height += iSpeed;
+        			if(height < 0) {
+        				height = 0;
+        			}
+        			// document.getElementById('txt1').value += height + '\n';
+        			obj.style.height = height + 'px';
+        		}
+        	})
+        }
+	</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        * {
+        	margin: 0;
+        	padding: 0;
+        }
+        #ul1 {
+        	width: 300px;
+        	height: 300px;
+        	margin: 0 auto;
+        	border: 1px solid #DDD;
+        	overflow: auto;
+        }
+        li { 
+        	list-style: none; 
+        	border-bottom: 1px dashed #999;
+        	padding: 10px;
+        	overflow: hidden;
+        	filter: alpha(opacity = 0);
+        	opacity: 0;
+
+        }
+	</style>
+	<script src="js/JS.js"></script>
+</head>
+<body>
+	
+	<textarea name="" id="text1" cols="40" rows="10"></textarea><br />
+	<input id="btn1" type="button" value="发布" />
+	<ul id="ul1">
+        <li>asad</li>
+	</ul>
+
+	<script>
+        window.onload = function() {
+        	var oText = document.getElementById('text1');
+        	var oBtn = document.getElementById('btn1');
+        	var oUl = document.getElementById('ul1');
+
+        	oBtn.onclick = function() {
+        		var oLi = document.createElement('li');
+        		var aLi = oUl.getElementsByTagName('li');
+        		oLi.innerHTML = oText.value;
+        		oText.value = '';
+
+        		if(aLi.length) {
+        			oUl.insertBefore(oLi, aLi[0]);
+        		}else {
+                    oUl.appendChild(oLi);
+        		}
+        		var iHeight = oLi.offsetHeight;
+        		oLi.style.height = 0;
+
+        		starMove(oLi, { height: iHeight }, function() {
+        			starMove(oLi, { opacity: 100 });
+        		});
+
+        	}
+        }
+	</script>
+</body>
+</html>

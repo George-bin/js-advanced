@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        #div1 {
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+	<input id="btn" type="button" value="开始" />
+	<div id="div1"></div>
+
+    
+    <script src="js/JS.js"></script>
+	<script>
+        /*
+            多个值同时变化
+            setStyle同时设置多个属性
+                -参数传递
+                 >>JSON的使用
+                 >>for in遍历属性
+        */
+        
+        var oBtn = document.getElementById('btn'),
+            oDiv = document.getElementById('div1');
+
+        oBtn.onclick = function() {
+        	starMove(oDiv, {width: 200, height: 200});
+
+        }
+	</script>
+</body>
+</html>

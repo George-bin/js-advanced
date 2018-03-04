@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        div {
+        	width: 100px;
+        	height: 50px;
+        	margin-bottom: 10px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+
+	<script>
+        function starMove(obj, target) {
+        	// var oDiv = document.getElementById('div1');
+
+        	clearInterval(obj.timer);
+        	obj.timer = setInterval(function() {//将定时器作为对象属性使用，避免多物体使用时占用，导致错误
+        		var iWidth = parseInt(getStyle(obj, 'width'));
+        		var iSpeed = (target - iWidth)/8;
+
+        		iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        		if(iWidth == target) {
+        			clearInterval(obj.timer);
+        		}else {
+        			obj.style.width = iWidth + iSpeed + 'px';
+        		}
+        	},50)
+        }
+
+        var aDiv = document.getElementsByTagName('div');
+        for(var i=0, len=aDiv.length; i<len; i++) {
+        	aDiv[i].onmouseover = function() {
+	        	starMove(this, 300);
+	        }
+	        aDiv[i].onmouseout = function() {
+	        	starMove(this, 100);
+	        }
+        }
+
+        function getStyle(obj, attr) {
+        	return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+        }
+        
+	</script>
+</body>
+</html>

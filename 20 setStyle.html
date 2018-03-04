@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        #div1 {
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+	<input id="btn" type="button" value="按钮" />
+	<div id="div1"></div>
+    
+    <script src='js/JS.js'></script>
+	<script>
+	    /* 
+		    var arr = [1, 15, 8];
+	        var obj = {name: 'george', age: 23}
+	        var i = 0;
+	        for(i in arr) {
+	        	alert(i + '=' + arr[i]);
+	        }
+
+	        for(i in obj) {
+	        	alert(i + '=' + obj[i]);
+	        }
+
+	        数组：for、for..in
+	        JSON: for..in
+        */
+        var oBtn = document.getElementById('btn'),
+            oDiv = document.getElementById('div1');
+
+ 
+        oBtn.onclick = function() {
+            setStyle(oDiv, {width: '200px', height: '200px', background: 'green'});
+        }
+
+        // JSON数据格式的使用
+        function setStyle(obj, json) {
+			var attr = '';
+			for(attr in json) {
+				obj.style[attr] = json[attr];
+			}
+		}
+	</script>
+</body>
+</html>

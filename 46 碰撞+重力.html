@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+       #div1 {
+       	    position: absolute;
+       	    width: 100px;
+       	    height: 100px;
+       	    background: red;
+       }
+	</style>
+</head>
+<body>
+	<input id="btn" type="button" value="开始" />
+	<div id="div1"></div>
+
+	<script>
+
+	    window.onload = function() {
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function() {
+            	starMove();
+            }
+	    }
+	    var iSpeedX = 12;
+	    var iSpeedY = 8;
+        function starMove() {
+        	setInterval(function() {
+        		var oDiv = document.getElementById('div1');
+        		
+
+                iSpeedY += 3;   //重力
+
+                var l = oDiv.offsetLeft + iSpeedX;
+                var t = oDiv.offsetTop + iSpeedY;
+
+        		if(t >= document.documentElement.clientHeight - oDiv.offsetHeight) {
+        			iSpeedY *= -0.7;
+                    iSpeedX *= 0.7;
+
+        			t = document.documentElement.clientHeight - oDiv.offsetHeight;
+        		}else if(t <= 0) {
+        			iSpeedY *= -1;
+                    iSpeedX *= 0.7;
+                    t = 0;
+        		}
+        		if(l >= document.documentElement.clientWidth - oDiv.offsetWidth) {
+        			iSpeedX *= -0.7;
+        			l = document.documentElement.clientWidth - oDiv.offsetWidth;
+        		}else if(l <= 0) {
+                    iSpeedX *= -0.7;
+                    l = 0;
+        		}
+        		if(Math.abs(iSpeedX) < 1) {
+        			iSpeedX = 0;
+        		}
+        		if(Math.abs(iSpeedY) < 1) {
+                    iSpeedY = 0;
+        		}
+
+
+        		oDiv.style.left = l + 'px';
+        		oDiv.style.top = t + 'px';
+
+
+
+        	}, 30)
+        }
+	</script>
+</body>
+</html>

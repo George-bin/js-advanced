@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        img {
+        	filter: alpha(opacity:30);
+        	opacity: .3;
+        }
+	</style>
+</head>
+<body>
+	<img src="images/bao13.png" alt="" />
+
+	<script>
+	    function starMove(obj, target) {            
+	        clearInterval(oImg.timer);
+
+	        oImg.timer = setInterval(function() {
+	        	var speed = 0;
+	            speed = alpha < target ? 5 : -5;
+                if(alpha == target) {
+                	clearInterval(oImg.timer);
+                }else {
+                	alpha += speed;
+                   
+                	obj.style.opacity = alpha/100;
+                	obj.style.filter = 'alpha(opacity:'+ alpha +')';
+                }
+
+	        },100)
+	    }
+        
+        var oImg = document.getElementsByTagName('img')[0],
+            alpha = 30;
+        oImg.onmouseover = function() {
+        	starMove(oImg, 100);
+        }
+        oImg.onmouseout = function() {
+        	starMove(oImg, 30);
+        }
+        
+	</script>
+</body>
+</html>

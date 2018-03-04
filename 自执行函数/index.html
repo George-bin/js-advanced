@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="点我" id="btn" />
+    <script>
+        // (function(argument) {
+        //     //独立的作用域，不会污染全局函数
+
+        // })();
+
+        // (function(window, document) {
+        //     //对于当前作用块中，如果将window对象传进来，就不用依赖全局对象了
+        //     var div = window.document.getElementById();
+        // })(window, document);
+
+        var oBtn = document.getElementById('btn');
+        oBtn.onclick = function() {
+            console.log(111);
+        };
+        // (function() {
+        //     console.log(222);
+        // })();
+
+        var a = function aaa() {
+            console.log(333);
+        }();
+
+        !function() {
+            console.log('aaa');
+        }();
+
+        +function() {
+            console.log('bbb');
+        }();
+
+        // 赋值操作
+        // 小括号
+        // 逻辑运算符
+        // 数字运算符
+
+        
+    </script>
+</body>
+</html>

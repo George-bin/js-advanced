@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        div {
+        	width: 100px;
+        	height: 100px;
+        	margin: 10px;
+        	opacity: .3;
+        	filter: alpha(opacity: 30);
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+    
+    <script>
+        // var alpha = 30;
+        function startMove(obj, iTarget) {
+
+        	clearInterval(obj.timer);
+        	
+            obj.timer = setInterval(function() {
+            	var iSpeed = (iTarget - obj.alpha)/8;
+            	iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+            	 if(obj.alpha == iTarget) {
+            	 	clearInterval(obj.timer);
+            	 }else {
+            	 	obj.alpha += iSpeed;
+            	 	obj.style.opacity = obj.alpha/100;
+            	 	obj.style.filter = 'alpha(opacity:'+ obj.alpha +')';
+            	 }
+            },50)
+        }
+
+        var aDiv = document.getElementsByTagName('div');
+        for(var i=0, len=aDiv.length; i<len; i++) {
+        	aDiv[i].alpha = 30;  //自定义属性
+        	aDiv[i].onmouseover = function() {
+        		startMove(this, 100);
+        	}
+        	aDiv[i].onmouseout = function() {
+        		startMove(this, 30);
+        	}
+        }
+    </script>
+</body>
+</html>

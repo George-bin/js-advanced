@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        #div1 {
+        	position: absolute;
+        	top: 50px;
+        	left: 0;
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+    <input id="btn" type="button" value="开始运动" />
+	<div id="div1"></div>
+
+	<script>
+	    /*弹性运动
+	      1、速度不断增加或减少
+	      2、速度减小到负值，回向反方向运动
+
+	      弹性运动
+	      1、在目标点左边，加速；在目标点右边减速；
+	      2、根据距离，计算加速度
+
+	      摩擦力
+	      1、速度不断减小
+
+	      带摩擦力的弹性运动
+	      1、弹性运动+摩擦力
+
+	      弹性公式
+	      1、速度 += （目标值-oDiv.offsetLeft）/5;
+	      2、速度 *= 0.7;
+
+	      问题：
+	      1、无法到达指定位置 —— 小数误差问题
+	      2、如何解决？速度无法取整，使用变态办法 —— 变量
+
+	      弹性运动：
+	      1、弹性运动问题：运动过界
+	    */
+        var oDiv = document.getElementById('div1');
+        var oBtn = document.getElementById('btn');
+
+        var iSpeed = 10;
+        oBtn.onclick = function() {
+        	setInterval(function() {
+	            oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+	        }, 30);
+        }
+        
+	</script>
+</body>
+</html>

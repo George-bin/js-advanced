@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>链式运动框架</title>
+	<style>
+        #div1 {
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+    <input id="btn" type="button" value="开始运动" />
+    <div id="div1"></div>
+
+
+
+
+    <script src="js/JS.js"></script>
+	<script>
+        /*
+        链式运动框架
+        回调函数：
+            1、运动停止时，执行函数
+            2、运动停止时，开始下一次运动
+        */
+        window.onload = function() {
+        	var oBtn = document.getElementById('btn'),
+                oDiv = document.getElementById('div1');
+
+	        oBtn.onclick = function() {
+	        	starMove2(oDiv, 'width', 300, function() {
+	        		starMove2(oDiv, 'height', 300);
+	        	});
+	        }
+        }
+        
+	</script>
+</body>
+</html>

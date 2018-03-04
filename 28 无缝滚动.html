@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        * {
+       	    margin: 0;
+       	    padding: 0;
+        }
+        a {
+        	position: absolute;
+        	top: 77px;
+        	width: 50px;
+        	height: 50px;
+        	line-height: 50px;
+        	font-size: 40px;
+        	text-align: center;
+        	text-decoration: none;
+        	color: #FFF;
+        	background: #000;
+        	opacity: 0.4;
+        	filter: alpha(opacity=40);
+        	z-index: 2;
+        }
+        a:hover {
+        	opacity: 0.8;
+        	filter: alpha(opacity=80);
+        }
+        .left { left: 7px; }
+        .right { right: 7px; }
+
+        #div1 {
+       	    position: relative;
+       	    border: 1px solid #000;
+       	    width: 1040px;
+       	    height: 230px;
+       	    margin: 40px auto 0;
+       	    overflow: hidden;
+        }
+        #ul1 {
+       	    position: absolute;
+       	    top: 10;
+       	    left: 0;
+
+        }
+        #ul1 li {
+        	float: left;
+        	list-style: none;
+        	width: 240px;
+        	height: 210px;
+        	padding: 10px;
+        }
+	</style>
+	<script src="js/JS.js"></script>
+</head>
+<body>
+
+    <div id="div1">
+        <a class="left" href="#">&lt;</a>
+        <a class="right" href="#">&gt;</a>
+
+    	<ul id="ul1">
+    		<li><img src="images/bao1.png" alt="" /></li>
+    		<li><img src="images/bao2.png" alt="" /></li>
+    		<li><img src="images/bao3.png" alt="" /></li>
+    		<li><img src="images/bao4.png" alt="" /></li>
+    		<li><img src="images/bao5.png" alt="" /></li>
+    		<li><img src="images/bao6.png" alt="" /></li>
+    	</ul>
+    </div>
+	<script>
+        window.onload = function() {
+        	var oDiv = document.getElementById('div1');
+        	var oUl = document.getElementById('ul1');
+        	var aA = document.getElementsByTagName('a');
+
+        	var aLi = oUl.getElementsByTagName('li');
+        	//复制一次oUl的内容
+        	oUl.innerHTML += oUl.innerHTML;
+            oUl.style.width = aLi.length*aLi[0].offsetWidth + 'px';
+
+        	var timer = null;
+        	var iSpeed = 5;
+            
+
+        	timer = setInterval(function() {
+        		//将oUl撤回原点        		
+        		if(oUl.offsetLeft < -oUl.offsetWidth/2) {
+        			oUl.style.left = 0;
+        		}else if(oUl.offsetLeft > 0){
+                    oUl.style.left = -oUl.offsetWidth/2 + 'px';
+        		}
+
+        		oUl.style.left = oUl.offsetLeft + iSpeed + 'px';
+        	}, 50);
+
+        	aA[0].onclick = function() {
+        		iSpeed = -5;
+
+        	}
+        	aA[1].onclick = function() {
+        		iSpeed = 5;
+        		
+        	}
+        }
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        #div1 {
+        	position: absolute;
+        	left: -100px;
+        	width: 100px;
+        	height: 200px;
+        	background: gray;
+        }
+        #div2 {
+        	position: absolute;
+        	left: 100px;
+        	top: 70px;
+        	width: 30px;
+        	height: 60px;
+        	text-align: center;
+        	color: white;
+        	background: red;
+        }
+	</style>
+</head>
+<body>
+	<div id="div1">
+        <div id="div2">分享到</div>
+	</div>
+
+	<script>
+        function starMove() {
+        	var oDiv1 = document.getElementById('div1');
+
+        	oDiv1.onmouseover = function() {
+        		move(oDiv1, 0, 10);
+        	}
+        	oDiv1.onmouseout = function() {
+        		move(oDiv1, -100, 10);
+        	}
+
+        	function move(obj, target, speed) {
+        		clearInterval(obj.timer);
+
+                speed = obj.offsetLeft <= target ? 10 : -10;
+	        	obj.timer = setInterval(function() {
+	        		if(obj.offsetLeft == target) {
+	        			clearInterval(obj.timer);
+	        		}else {
+	        			obj.style.left = obj.offsetLeft + speed + 'px';
+	        		}
+	        		
+	        	},30)
+        	}
+
+        	
+        }
+        starMove();
+	</script>
+</body>
+</html>

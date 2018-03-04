@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        *{
+        	padding: 0;
+        	margin: 0;
+        }
+        #ul1 li{
+        	position: relative;
+        	float: left;
+        	width: 100px;
+        	height: 20px;
+        	line-height: 20px;
+        	border: 1px solid #333;
+        	text-align: center;
+        	list-style: none;
+        	background: #9F3;
+        }
+        #ul1 li div{
+        	position: absolute;
+        	top: 20px;
+        	width: 100%;
+            height: 0px;
+            background: #CCC;
+            overflow: hidden;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+	</style>
+</head>
+<body>
+	<ul id="ul1">
+		<li>
+		    首页
+			<div>
+				dadad<br />
+				dada
+				adadad<br>
+				dadsaf
+			</div>
+		</li>
+		<li>
+		    产品
+			<div>
+				dadad<br />
+				dada
+				adadad<br>
+				dadsaf
+				dadad<br />
+				dada
+				adadad<br>
+				dadsaf
+			</div>
+		</li>
+		<li>
+		    关于
+			<div>
+				dadad<br />
+				dada
+				adadad<br>
+				dadsaf
+			</div>
+		</li>
+	</ul>
+
+	<script src="js/JS.js"></script>
+	<script>
+        var oUl = document.getElementById('ul1'),
+            aLi = oUl.getElementsByTagName('li');
+
+        for(var i = 0, len = aLi.length; i < len; i++) {
+        	aLi[i].onmouseover = function() {
+        		var oDiv = this.getElementsByTagName('div')[0];
+        		oDiv.style.height = 'auto';
+        		var oHeight = oDiv.offsetHeight;
+        		oDiv.style.height = 0;
+                starMove(oDiv, {opacity: 100, height: oHeight});
+        	}
+
+        	aLi[i].onmouseout = function() {
+        		var oDiv = this.getElementsByTagName('div')[0];
+                starMove(oDiv, {opacity: 0, height: 0});
+        		
+        	}
+        }
+	</script>
+</body>
+</html>
